@@ -1,40 +1,21 @@
-# ChatMermaid
+# README
 
-This template should help get you started developing with Vue 3 in Vite.
+自然语言绘制 Mermaid 流程图，基于OpenAI
 
-## Recommended IDE Setup
+## 项目介绍
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+本项目是基于 OpenAI 的模型，使用自然语言绘制 Mermaid 流程图。
 
-## Type Support for `.vue` Imports in TS
+下面是一个示例：
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+![image-20230322214753087](https://imagezzzzz.oss-cn-hangzhou.aliyuncs.com/img/image-20230322214753087.png)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### 未来计划
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- 支持 Mermaid 文本的编辑
+- 支持 Mermaid 图片的导出为 SVG 或 PNG 等格式
+- 可以支持对话模式，可以和机器人对话，机器人会根据对话内容绘制优化输出的 Mermaid 流程图
 
-## Customize configuration
+## 希望获得帮助
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+由于我不是专业开发人员，项目目前只是一个简单的demo，希望能获得帮助更好的完善项目。
