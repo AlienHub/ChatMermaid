@@ -8,7 +8,7 @@
 
 下面是一个示例：
 
-![](https://user-images.githubusercontent.com/44266450/227425232-2364bc46-ce7a-4ebd-8d98-4c8433aec28e.mov)
+https://user-images.githubusercontent.com/44266450/227425232-2364bc46-ce7a-4ebd-8d98-4c8433aec28e.mov
 
 ### 已经实现
 
