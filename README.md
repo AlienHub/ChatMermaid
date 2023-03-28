@@ -6,6 +6,10 @@
 
 本项目是基于 OpenAI 的 API 接口，使用自然语言绘制 Mermaid 流程图，可以允许下载生成的流程图，或手动的去修改的的流程图等。
 
+在线demo环境：https://chat.tntsec.net
+
+> 注意：需要使用自己的 Key 哦
+
 下面是一个示例：
 
 https://user-images.githubusercontent.com/44266450/227425232-2364bc46-ce7a-4ebd-8d98-4c8433aec28e.mov
