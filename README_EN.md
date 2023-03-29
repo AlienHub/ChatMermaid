@@ -32,6 +32,16 @@ https://user-images.githubusercontent.com/44266450/227425232-2364bc46-ce7a-4ebd-
 - [ ] Can support dialogue mode, you can talk to the robot, and the robot will draw an optimized output Mermaid flow chart according to the dialogue content
 - [ ] better page style
 
+## how to use
+
+1. Clone the project code.
+2. Use `yarn install` to install the dependencies required by the project.
+3. Use `yarn dev` to view the running results.
+
+### main logic file
+
+Currently all logic codes are in `/src/App.vue`.
+
 ## Hope to get help
 
 Since I am not a professional developer, the project is currently just a simple demo, and I hope to get help to improve the project better.
