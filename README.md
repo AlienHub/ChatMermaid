@@ -2,6 +2,8 @@
 
 自然语言绘制 Mermaid 流程图，基于 OpenAI
 
+[中文](https://github.com/AlienHub/ChatMermaid/blob/main/README.md) ｜ [English](https://github.com/AlienHub/ChatMermaid/blob/main/README_EN.md)
+
 ## 项目介绍
 
 本项目是基于 OpenAI 的 API 接口，使用自然语言绘制 Mermaid 流程图，可以允许下载生成的流程图，或手动的去修改的的流程图等。
