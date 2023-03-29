@@ -2,6 +2,8 @@
 
 Natural language drawing Mermaid flow chart, based on OpenAI
 
+[中文](https://github.com/AlienHub/ChatMermaid/blob/main/README.md) ｜ [English](https://github.com/AlienHub/ChatMermaid/blob/main/README_EN.md)
+
 ## Project Introduction
 
 This project is based on the API interface of OpenAI, using natural language to draw the Mermaid flow chart, which allows downloading the generated flow chart, or manually modifying the flow chart, etc.
