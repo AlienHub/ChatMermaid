@@ -1,0 +1,16 @@
+#excalidraw {
+  width: 70%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border-left: 1px solid #ccc;
+
+  .mobile-misc-tools-container {
+    display: none !important;
+  }
+}
+
+.excalidraw-wrapper {
+  height: 100%;
+}

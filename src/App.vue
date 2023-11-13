@@ -3,30 +3,18 @@
 
     <el-container>
       <el-header>
-        <el-row :gutter='12'>
-          <el-col :span='12' :offset="5">
-            <el-input class="input_1" v-model="inputValue" placeholder="请输入你想要绘制的流程" @keyup.enter="handleSubmit" />
-          </el-col>
-          <el-col :span='2'>
-            <el-button class='button_1' @click="handleSubmit" style="width: 100%;" :loading="loading"
-              :disabled="loading">生 成</el-button>
-          </el-col>
-          <el-col :span="1" style="margin-right:8px"  >
-              <el-popover
-                width="300"
-                :visible="visible"
-                placement="top"
-              >
-              <el-input v-model="inputValue1" placeholder="输入您的 Key" />
-              <el-button type="primary" link @click="updatakey" style="float: right; margin-top: 8px;">确认</el-button>
-              <el-button link @click="diskey" style="float: right; margin-top: 8px;">取消</el-button>
-              <template #reference>
-                <el-button class='button_1' type="primary" text @click="visible = true" >输入 Key</el-button>>
-              </template>
+        <el-input class="input_1" v-model="inputValue" placeholder="请输入你想要绘制的流程" @keyup.enter="handleSubmit" />
+        <el-button class='button_1' type="primary"  @click="handleSubmit" :loading="loading" :disabled="loading">生
+          成</el-button>
+        <el-popover width="300" :visible="visible" placement="top">
+          <el-input v-model="inputValue1" placeholder="输入您的 Key" />
+          <el-button type="primary" link @click="updatakey" style="float: right; margin-top: 8px;">确认</el-button>
+          <el-button link @click="diskey" style="float: right; margin-top: 8px;">取消</el-button>
+          <template #reference>
+            <el-button class='button_1' @click="visible = true">输入 Key</el-button>>
+          </template>
 
-            </el-popover>
-          </el-col>
-        </el-row>
+        </el-popover>
       </el-header>
       <el-main class="main ">
         <div style="display: flex; justify-content: flex-end;">
@@ -89,12 +77,12 @@ export default {
     const inputValue = ref('')
     const inputValue1 = ref('')
     const textarea2 = ref('')
-    const openaikey = ref('')
+    const openaikey = ref('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')
     const visible = ref(false)
 
     const updatakey = () => {
       openaikey.value = inputValue1.value;
-      
+
       visible.value = false;
     }
     const diskey = () => {
@@ -118,6 +106,12 @@ export default {
         // throw new Error('Diagram error not found.');
         ElMessage.error('抱歉，API调用失败请重试')
       });
+      // postmermaid(prompt).then((res) => {
+      //   console.log(res);
+      // }).catch((error) => {
+      //   // throw new Error('Diagram error not found.');
+      //   ElMessage.error('抱歉，API调用失败请重试')
+      // });
     }
     const updateDiagram = async function () {
       console.log(textarea2.value);
@@ -169,8 +163,24 @@ export default {
   }
 }
 
-// 创建一个同步的函数，用于获取openai的返回值,"使用mermaid绘制TCP连接流程图,
+// 创建一个同步的函数，用于请求http://localhost:443/api/mermaid,
+async function postmermaid(content_1) {
+  console.log(content_1)
+  const response = await fetch('http://localhost:443/api/mermaid', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "content": content_1,
+    })
+  })
+  const data = await response.json()
+  console.log(data);
+  return data;
+}
 
+// 创建一个同步的函数，用于获取openai的返回值,"使用mermaid绘制TCP连接流程图,
 async function chatopenai(content_1, key) {
   console.log(content_1)
   loading.value = true;
@@ -201,6 +211,12 @@ async function chatopenai(content_1, key) {
 
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --el-color-primary: #768adc;
   --el-color-primary-light-3: #98a7e5;
@@ -209,6 +225,11 @@ async function chatopenai(content_1, key) {
   --el-color-primary-light-9: #dde2f6;
   --el-color-primary-dark-2: #6779c1;
   --header-height: 80px;
+}
+
+
+body {
+  background: rgba(246, 246, 247, 1);
 }
 
 .main {
@@ -237,32 +258,22 @@ async function chatopenai(content_1, key) {
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 8px 0px rgba(237, 240, 252, 1);
   height: 40px;
-  max-width: 832px;
-
 }
 
 .button_1 {
+  margin-left: 12px;
   height: 40px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 8px 0px rgba(237, 240, 252, 1);
   /* Q： 边框为0  */
   border: 0;
-
-
 }
 
 .el-header {
+  display: flex;
+  align-items: center;
+  padding: 0 15%;
   width: 100%;
   height: var(--header-height);
-}
-
-.el-row {
-  padding-top: calc((60px - 30px) / 2);
-  padding-bottom: calc((60px - 30px) / 2);
-}
-
-body {
-  background: rgba(246, 246, 247, 1);
 }
 </style>
