@@ -1,5 +1,6 @@
 <template>
-    <div calss="head">
+    <div class="head">
+        <!-- <div>logo</div> -->
         <div>
             <el-button type="primary" @click="sexcalidraw">Excalidraw</el-button>
             <el-button type="primary" @click="smermaid">Mermaid</el-button>
@@ -13,7 +14,7 @@
     <div class="content-container">
         <excalidraw :class="{ active: showExcalidraw }" id="excalidraw"></excalidraw>
         <div :class="{ active: showMermaid }" id="mermaids">
-            <pre class="mermaid" v-loading="loading" v-html="mermaid_data"></pre>
+            <pre class="mermaid"></pre>
         </div>
     </div>
 </template>
@@ -46,25 +47,29 @@ const sexcalidraw = () => {
 
 
 const drawDiagram = async function (graphDefinition) {
-  // const { svg } = await mermaid.render('mermaid', graphDefinition);
-  // document.querySelector('.mermaid').innerHTML = svg;
-  try {
-    const { svg } = await mermaid.render('mermaid', graphDefinition);
-    // console.log(svg);
-    document.querySelector('.mermaid').innerHTML = svg;
-    
-  } catch (error) {
-    // const errorElement = document.createElement('div');
-    // errorElement.innerText = error.toString();
-    // document.querySelector('.mermaid').appendChild(errorElement);
-    console.log(error);
-  }
+    // const { svg } = await mermaid.render('mermaid', graphDefinition);
+    // document.querySelector('.mermaid').innerHTML = svg;
+    try {
+        const { svg } = await mermaid.render('mermaid', graphDefinition);
+        // console.log(svg);
+        document.querySelector('.mermaid').innerHTML = svg;
+        document.querySelector('dmermaid').remove();
+
+    } catch (error) {
+        const errorElement = document.createElement('div');
+        errorElement.innerText = error.toString();
+        document.querySelector('.mermaid').appendChild(errorElement);
+        // document.querySelector('.mermaid').innerHTML = '';
+        // console.error(error);
+        document.querySelector('dmermaid').remove();
+    }
 
 };
 
+
 const sendRequest = async () => {
     const url = 'https://api.dify.ai/v1/completion-messages';
-    const secretKey = 'app-vcCkzJ1sPjp4AFAvPpPENnj7';
+    const secretKey = 'app-ymU3nTJa3m6W77iOUmUuiTT2';
 
     try {
         const response = await axios.post(url, {
@@ -82,6 +87,7 @@ const sendRequest = async () => {
         });
 
         const responseData = response.data;
+        console.log(responseData);
         const answer = responseData.answer;
         const startIndex = answer.indexOf("```mermaid") + "```mermaid".length;
         const endIndex = answer.lastIndexOf("```");
@@ -108,6 +114,13 @@ const sendRequest = async () => {
 
 
 <style>
+.head {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    /* margin-top: 8px; */
+}
+
 textarea {
     resize: vertical;
     opacity: 1;
@@ -117,12 +130,14 @@ textarea {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
 
-.content-container > div, .content-container > excalidraw {
-  display: none;
+.content-container>div,
+.content-container>excalidraw {
+    display: none;
 }
 
-.content-container > div.active, .content-container > excalidraw.active {
-  display: block;
+.content-container>div.active,
+.content-container>excalidraw.active {
+    display: block;
 }
 
 .main {
@@ -130,11 +145,12 @@ textarea {
     display: flex;
     flex-direction: column;
     height: 100%;
+    top: 56px;
 }
 
 .output {
     /* width: 26%; */
-    height: 60vh;
+    height: calc(100vh - 56px - 20vh - 32px - 24px);
     margin-bottom: 8px;
     margin-top: 8px;
     padding: 8px;
@@ -144,7 +160,7 @@ textarea {
     max-width: 100%;
     margin-bottom: 8px;
     margin-top: 8px;
-    height: 20vh;
+    height: 10vh;
     padding: 8px;
 }
 
