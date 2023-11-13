@@ -1,22 +1,32 @@
 import ExcalidrawWrapper from "./ExcalidrawWrapper.js";
 import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
-import { convertToExcalidrawElements}  from "@excalidraw/excalidraw"
+import { convertToExcalidrawElements } from "@excalidraw/excalidraw"
 import { graphToExcalidraw } from "./com/graphToExcalidraw.js";
 import { DEFAULT_FONT_SIZE } from "./com/constants.js";
 
 // Create Excalidraw Wrapper element
-const excalidrawWrapper = document.createElement("div");
-excalidrawWrapper.id = "excalidraw";
-document.body.appendChild(excalidrawWrapper);
+// const excalidrawWrapper = document.createElement("excalidraw");
+// excalidrawWrapper.id = "excalidraw";
+// document.body.appendChild(excalidrawWrapper);
 
-// Init Excalidraw
-const root = ReactDOM.createRoot(excalidrawWrapper);
-root.render(React.createElement(ExcalidrawWrapper));
+// const excalidrawWrapper = document.getElementById("excalidraw");
+
+// // Init Excalidraw
+// const root = ReactDOM.createRoot(excalidrawWrapper);
+// root.render(React.createElement(ExcalidrawWrapper));
+
+let root;
+
+document.addEventListener("DOMContentLoaded", function () {
+  const excalidrawWrapper = document.getElementById("excalidraw");
+  root = ReactDOM.createRoot(excalidrawWrapper);
+  root.render(React.createElement(ExcalidrawWrapper));
+});
 
 // Render to Excalidraw
 export const renderExcalidraw = (
   mermaidGraphDataString: string,
-  fontSize = DEFAULT_FONT_SIZE
+  fontSize = DEFAULT_FONT_SIZE,
 ) => {
   const mermaidGraphData = JSON.parse(mermaidGraphDataString);
   const { elements, files } = graphToExcalidraw(mermaidGraphData, { fontSize });
@@ -50,10 +60,10 @@ export async function renderDiagram(diagramDefinition) {
 
     console.info("解析后的流程图数据:", elements);
     const excalidrawElements = convertToExcalidrawElements(elements);
-    
+
     console.info("转换后的流程图数据:", excalidrawElements);
-    
-    root.render( 
+
+    root.render(
       React.createElement(ExcalidrawWrapper, {
         elements,
         excalidrawElements,
